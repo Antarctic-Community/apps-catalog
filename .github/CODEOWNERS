@@ -1,0 +1,9 @@
+# Заменить на реальные команды. Разработчики приложений правят только apps/<свой-id>/,
+# а всё, что влияет на выдачу (подборки, категории, код сайта) — только мейнтейнеры.
+/collections.json  @Antarctic-Community/maintainers
+/categories.json   @Antarctic-Community/maintainers
+/schema/           @Antarctic-Community/maintainers
+/scripts/          @Antarctic-Community/maintainers
+/src/              @Antarctic-Community/maintainers
+/.github/          @Antarctic-Community/maintainers
+/apps/             @Antarctic-Community/moderators

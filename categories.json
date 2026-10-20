@@ -1,0 +1,11 @@
+[
+  { "id": "ai", "name": "AI" },
+  { "id": "social", "name": "Социальные" },
+  { "id": "finance", "name": "Финансы" },
+  { "id": "business", "name": "Бизнес" },
+  { "id": "tokens", "name": "Токены" },
+  { "id": "shopping", "name": "Покупки" },
+  { "id": "games", "name": "Игры" },
+  { "id": "media", "name": "Медиа" },
+  { "id": "other", "name": "Другое" }
+]

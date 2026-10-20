@@ -1,0 +1,95 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Antarctic Wallet mini-app",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "awAppId",
+    "name",
+    "tagline",
+    "description",
+    "url",
+    "category",
+    "icon"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "maxLength": 40,
+      "description": "Должен совпадать с именем папки apps/<id>"
+    },
+    "awAppId": {
+      "type": "string",
+      "pattern": "^[0-9]{5,12}$",
+      "description": "Числовой id приложения в Antarctic Wallet: https://aw.me/app/<awAppId>"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 30
+    },
+    "tagline": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 40
+    },
+    "description": {
+      "type": "string",
+      "minLength": 20,
+      "maxLength": 2000,
+      "description": "Абзацы разделяются пустой строкой"
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "pattern": "^https://",
+      "description": "Адрес, который открывается в кошельке"
+    },
+    "category": {
+      "type": "string",
+      "description": "id из categories.json"
+    },
+    "developer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 60
+        },
+        "website": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://"
+        },
+        "support": {
+          "type": "string",
+          "description": "email или https-ссылка"
+        }
+      }
+    },
+    "releasedAt": {
+      "type": "string",
+      "format": "date"
+    },
+    "icon": {
+      "type": "string",
+      "pattern": "^[\\w.-]+\\.(png|webp|jpg|svg)$"
+    },
+    "screenshots": {
+      "type": "array",
+      "minItems": 0,
+      "maxItems": 8,
+      "items": {
+        "type": "string",
+        "pattern": "^screenshots/[\\w.-]+\\.(png|webp|jpg|svg)$"
+      }
+    }
+  }
+}

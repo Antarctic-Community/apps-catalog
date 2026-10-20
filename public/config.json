@@ -1,0 +1,9 @@
+{
+  "id": "69621168",
+  "name": "Каталог приложений",
+  "shortDescription": "Мини-приложения Antarctic Wallet",
+  "description": "Открытый каталог мини-приложений. Из каталога можно сразу открыть приложение в кошельке.",
+  "icon": "./icon.svg",
+  "category": "utilities",
+  "requiredScopes": []
+}

@@ -1,0 +1,16 @@
+{
+  "id": "antarctic-example",
+  "awAppId": "64596208",
+  "name": "Antarctic Example",
+  "tagline": "Пример embed-приложения",
+  "description": "Пример приложения из example-embed-app",
+  "url": "https://example.antarcticwallet.com",
+  "category": "other",
+  "developer": {
+    "name": "Antarctic Wallet",
+    "website": "https://antarcticwallet.com",
+    "support": "https://t.me/Antarcticwalletsupport_bot"
+  },
+  "icon": "icon.jpg",
+  "screenshots": []
+}

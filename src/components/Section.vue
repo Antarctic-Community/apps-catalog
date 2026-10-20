@@ -1,0 +1,14 @@
+<script setup>
+import AppRow from './AppRow.vue'
+defineProps({ title: String, collection: String, apps: Array, ranked: Boolean, limit: { type: Number, default: 3 } })
+</script>
+
+<template>
+  <section v-if="apps.length" class="section">
+    <header class="section-head">
+      <h2>{{ title }}</h2>
+      <RouterLink v-if="apps.length > limit" :to="{ name: 'list', params: { collection } }" class="more">Все ›</RouterLink>
+    </header>
+    <AppRow v-for="(a, i) in apps.slice(0, limit)" :key="a.id" :app="a" :rank="ranked ? i + 1 : 0" />
+  </section>
+</template>
