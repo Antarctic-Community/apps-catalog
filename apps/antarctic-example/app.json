@@ -4,7 +4,6 @@
   "name": "Antarctic Example",
   "tagline": "Пример embed-приложения",
   "description": "Пример приложения из example-embed-app",
-  "url": "https://example.antarcticwallet.com",
   "category": "other",
   "developer": {
     "name": "Antarctic Wallet",
@@ -12,5 +11,10 @@
     "support": "https://t.me/Antarcticwalletsupport_bot"
   },
   "icon": "icon.jpg",
-  "screenshots": []
+  "screenshots": [
+    "screenshots/1.png",
+    "screenshots/2.png",
+    "screenshots/3.png",
+    "screenshots/4.png"
+  ]
 }

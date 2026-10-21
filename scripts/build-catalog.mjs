@@ -131,7 +131,7 @@ try {
     ...app,
     mau: pub.mau,
     verified: pub.verified,
-    addedAt: pub.addedAt ?? addedAtFromGit(app.id, app.releasedAt),
+    addedAt: pub.addedAt ?? addedAtFromGit(app.id),
   }))
 } catch (e) {
   console.error(`\n✖ Не удалось получить данные приложения: ${e.message}`)

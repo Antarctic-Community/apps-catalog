@@ -1,7 +1,7 @@
 <script setup>
 import { computed } from 'vue'
 import { appById, catalog } from '../catalog'
-import { capabilities, isAdded, addApp, openApp } from '../bridge'
+import { capabilities, isAdded, addApp, openApp, appLink } from '../bridge'
 import ShareButton from '../components/ShareButton.vue'
 import VerifiedBadge from '../components/VerifiedBadge.vue'
 
@@ -52,7 +52,7 @@ const primary = () => (canAdd.value ? addApp(app.value) : openApp(app.value))
     <section class="card"><h2>О приложении</h2><p v-for="p in paragraphs" :key="p">{{ p }}</p></section>
     <section class="card">
       <h2>Информация</h2>
-      <div class="info"><span>Приложение</span><a :href="app.url" target="_blank" rel="noopener">{{ host(app.url) }}</a></div>
+      <div class="info"><span>Приложение</span><a :href="appLink(app)" target="_blank" rel="noopener">{{ appLink(app).replace(/^https:\/\//, '') }}</a></div>
       <div v-if="app.developer?.website" class="info"><span>Сайт</span><a :href="app.developer.website" target="_blank" rel="noopener">{{ host(app.developer.website) }}</a></div>
       <div v-if="support" class="info"><span>Поддержка</span><a :href="support" target="_blank" rel="noopener">{{ supportLabel }}</a></div>
     </section>

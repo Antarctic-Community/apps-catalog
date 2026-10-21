@@ -9,7 +9,6 @@
     "name",
     "tagline",
     "description",
-    "url",
     "category",
     "icon"
   ],
@@ -41,12 +40,6 @@
       "maxLength": 2000,
       "description": "Абзацы разделяются пустой строкой"
     },
-    "url": {
-      "type": "string",
-      "format": "uri",
-      "pattern": "^https://",
-      "description": "Адрес, который открывается в кошельке"
-    },
     "category": {
       "type": "string",
       "description": "id из categories.json"
@@ -73,10 +66,6 @@
           "description": "email или https-ссылка"
         }
       }
-    },
-    "releasedAt": {
-      "type": "string",
-      "format": "date"
     },
     "icon": {
       "type": "string",
