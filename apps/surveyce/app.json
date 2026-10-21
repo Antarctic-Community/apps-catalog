@@ -1,0 +1,18 @@
+{
+  "id": "surveyce",
+  "awAppId": "51361595",
+  "name": "Surveyce",
+  "tagline": "Опросы с наградой в USD",
+  "description": "Отвечайте на опросы и получайте USD на баланс. Создавайте свои опросы — с наградой или розыгрышем",
+  "category": "other",
+  "developer": {
+    "name": "Antarctic Wallet",
+    "website": "https://antarcticwallet.com",
+    "support": "https://t.me/Antarcticwalletsupport_bot"
+  },
+  "icon": "icon.png",
+  "screenshots": [
+    "screenshots/1.png",
+    "screenshots/2.png"
+  ]
+}
