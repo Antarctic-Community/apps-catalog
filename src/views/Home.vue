@@ -1,6 +1,7 @@
 <script setup>
 import { computed } from 'vue'
-import { appsOf, COLLECTIONS } from '../catalog'
+import { appsOf } from '../catalog'
+import { collectionTitle, t } from '../i18n'
 import Section from '../components/Section.vue'
 import ActionButton from '../components/ActionButton.vue'
 
@@ -9,8 +10,8 @@ const featured = computed(() => appsOf('featured').filter((a) => a.screenshots.l
 
 <template>
   <header class="top">
-    <h1>Каталог</h1>
-    <RouterLink :to="{ name: 'search' }" class="round" aria-label="Поиск">
+    <h1>{{ t('catalog') }}</h1>
+    <RouterLink :to="{ name: 'search' }" class="round" :aria-label="t('search')">
       <svg viewBox="0 0 20 20" width="20" height="20"><circle cx="9" cy="9" r="6" fill="none" stroke="currentColor" stroke-width="1.8" /><path d="M14 14l4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" /></svg>
     </RouterLink>
   </header>
@@ -26,6 +27,6 @@ const featured = computed(() => appsOf('featured').filter((a) => a.screenshots.l
     </RouterLink>
   </div>
 
-  <Section title="Топ приложений" collection="top" :apps="appsOf('top')" ranked :limit="5" />
-  <Section v-for="c in ['popular', 'new', 'verified']" :key="c" :title="COLLECTIONS[c]" :collection="c" :apps="appsOf(c)" />
+  <Section :title="collectionTitle('top')" collection="top" :apps="appsOf('top')" ranked :limit="5" />
+  <Section v-for="c in ['popular', 'new', 'verified']" :key="c" :title="collectionTitle(c)" :collection="c" :apps="appsOf(c)" />
 </template>

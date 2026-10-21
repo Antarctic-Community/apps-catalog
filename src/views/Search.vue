@@ -1,6 +1,7 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 import { catalog } from '../catalog'
+import { categoryTitle, t } from '../i18n'
 import AppRow from '../components/AppRow.vue'
 import iconServices from '../assets/categories/services.svg'
 import iconCards from '../assets/categories/game.svg'
@@ -56,26 +57,26 @@ function remember() {
   <form class="searchbar" @submit.prevent="remember">
     <label class="field">
       <svg viewBox="0 0 20 20" width="18" height="18"><circle cx="9" cy="9" r="6" fill="none" stroke="currentColor" stroke-width="1.8" /><path d="M14 14l4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" /></svg>
-      <input ref="input" v-model="q" type="search" placeholder="Название приложения..." enterkeyhint="search" />
+      <input ref="input" v-model="q" type="search" :placeholder="t('placeholder')" enterkeyhint="search" />
     </label>
-    <RouterLink :to="{ name: 'home' }" class="cancel">Отмена</RouterLink>
+    <RouterLink :to="{ name: 'home' }" class="cancel">{{ t('cancel') }}</RouterLink>
   </form>
 
   <template v-if="!searching">
-    <h3 v-if="recentApps.length" class="caps">Недавно искали</h3>
+    <h3 v-if="recentApps.length" class="caps">{{ t('recent') }}</h3>
     <AppRow v-for="a in recentApps" :key="a.id" :app="a" />
-    <h3 class="caps">Категории</h3>
+    <h3 class="caps">{{ t('categories') }}</h3>
     <div class="cats">
-      <button class="cat" @click="showAll = true"><img :src="iconServices" alt="" width="20" height="20" />Все</button>
-      <RouterLink v-for="c in filledCategories" :key="c.id" class="cat" :to="{ name: 'category', params: { id: c.id } }"><img v-if="categoryIcons[c.id]" :src="categoryIcons[c.id]" alt="" width="20" height="20" />{{ c.name }}</RouterLink>
+      <button class="cat" @click="showAll = true"><img :src="iconServices" alt="" width="20" height="20" />{{ t('all') }}</button>
+      <RouterLink v-for="c in filledCategories" :key="c.id" class="cat" :to="{ name: 'category', params: { id: c.id } }"><img v-if="categoryIcons[c.id]" :src="categoryIcons[c.id]" alt="" width="20" height="20" />{{ categoryTitle(c.id, c.name) }}</RouterLink>
     </div>
   </template>
 
   <template v-else>
     <AppRow v-for="a in results" :key="a.id" :app="a" />
     <div v-if="!results.length" class="empty">
-      <strong>Ничего не найдено</strong>
-      <span>Попробуйте изменить запрос или категорию</span>
+      <strong>{{ t('nothing') }}</strong>
+      <span>{{ t('nothingHint') }}</span>
     </div>
   </template>
 </template>

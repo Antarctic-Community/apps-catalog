@@ -18,7 +18,8 @@ button { font: inherit; color: inherit; border: 0; background: none; cursor: poi
 .top { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 12px; }
 h1 { font-size: 26px; margin: 0; font-weight: 700; display: flex; align-items: center; gap: 6px; }
 h2 { font-size: 18px; margin: 0; }
-.round { width: 36px; height: 36px; border-radius: 50%; background: var(--blue-soft); color: var(--text); display: grid; place-items: center; font-size: 22px; }
+.round { width: 36px; height: 36px; border-radius: 50%; background: var(--blue-soft); color: var(--text); display: grid; place-items: center; line-height: 0; }
+.round svg { display: block; }
 .top:has(.round:first-child) { justify-content: flex-start; }
 
 .banners { display: flex; gap: 8px; overflow-x: auto; scroll-snap-type: x mandatory; margin: 0 -16px; padding: 0 16px; scrollbar-width: none; }

@@ -6,6 +6,7 @@
 // Команды «добавить на домашний экран» в SDK нет — capabilities.canAdd остаётся false.
 import { reactive, ref } from 'vue'
 import { AWCommand, AWOpenAppError, AWSDK, AWTimeoutError, OpenAppErrorCodes } from '@antarctic-wallet/aw-sdk'
+import { setLocale, t } from './i18n'
 
 const query = new URLSearchParams(location.search + '&' + (location.hash.split('?')[1] ?? ''))
 export const host = AWSDK.isInsideWallet() && query.has('parentOrigin') ? 'wallet' : 'web'
@@ -28,15 +29,18 @@ export const appLink = (app) => `https://aw.me/app/${app.awAppId}`
 
 const BG = { light: '#f5f5f8', dark: '#0b0d14' }
 const OPEN_ERROR = {
-  [OpenAppErrorCodes.NotFound]: 'Приложение не найдено',
-  [OpenAppErrorCodes.Blocked]: 'Приложение заблокировано',
-  [OpenAppErrorCodes.Suspended]: 'Приложение приостановлено',
-  [OpenAppErrorCodes.StackLimit]: 'Сначала закройте одно из открытых приложений',
-  [OpenAppErrorCodes.RateLimited]: 'Слишком часто. Попробуйте через пару секунд',
-  [OpenAppErrorCodes.InvalidAppId]: 'У приложения нет id в кошельке',
-  [OpenAppErrorCodes.SameApp]: 'Это и есть текущее приложение',
-  [OpenAppErrorCodes.GenericError]: 'Не удалось открыть приложение',
+  [OpenAppErrorCodes.NotFound]: 'error.notFound',
+  [OpenAppErrorCodes.Blocked]: 'error.blocked',
+  [OpenAppErrorCodes.Suspended]: 'error.suspended',
+  [OpenAppErrorCodes.StackLimit]: 'error.stackLimit',
+  [OpenAppErrorCodes.RateLimited]: 'error.rateLimited',
+  [OpenAppErrorCodes.InvalidAppId]: 'error.invalidAppId',
+  [OpenAppErrorCodes.SameApp]: 'error.sameApp',
+  [OpenAppErrorCodes.GenericError]: 'error.generic',
 }
+
+// Язык известен до handshake: кошелёк кладёт его в awLanguageCode.
+setLocale(query.get('awLanguageCode'))
 
 let hostSdk = null
 
@@ -50,6 +54,10 @@ function paint(sdk) {
   document.documentElement.dataset.theme = scheme
   document.documentElement.style.colorScheme = scheme
   if (hostSdk) sdk.setBackgroundColor(BG[scheme])
+}
+
+function syncLanguage(sdk) {
+  setLocale(sdk.languageCode || query.get('awLanguageCode'))
 }
 
 function syncBack(router) {
@@ -87,8 +95,10 @@ export function initHost(router) {
       persistSession: true,
     })
     sdk.events.on('themeChanged', () => paint(sdk))
+    sdk.events.on('languageChanged', () => syncLanguage(sdk))
     sdk.backButton.onClick(() => goBack(router))
     paint(sdk)
+    syncLanguage(sdk)
 
     try {
       await sdk.init()
@@ -98,6 +108,7 @@ export function initHost(router) {
     }
     hostSdk = sdk
     paint(sdk)
+    syncLanguage(sdk)
     syncBack(router)
     router.afterEach(() => syncBack(router))
   })()
@@ -110,7 +121,7 @@ export function openApp(app) {
         window.open(appLink(app), '_blank', 'noopener')
         return
       }
-      notify(error instanceof AWTimeoutError ? 'Кошелёк не ответил' : OPEN_ERROR[error.errorCode] ?? 'Не удалось открыть приложение')
+      notify(t(error instanceof AWTimeoutError ? 'error.timeout' : OPEN_ERROR[error.errorCode] ?? 'error.generic'))
     })
     return
   }

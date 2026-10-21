@@ -17,10 +17,3 @@ export const catalogError = computed(() => state.error)
 export const appById = (id) => state.data?.apps.find((a) => a.id === id)
 export const appsOf = (collection) =>
   (state.data?.collections[collection] ?? []).map(appById).filter(Boolean)
-
-export const COLLECTIONS = {
-  top: 'Топ приложений',
-  popular: 'Популярные',
-  new: 'Новые',
-  verified: 'Проверенные нами',
-}
