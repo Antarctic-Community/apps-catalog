@@ -1,6 +1,7 @@
 // Мост между каталогом и местом, где он открыт.
 //
-// В браузере «Открыть» ведёт на https://aw.me/app/<awAppId>.
+// В браузере «Открыть» ведёт на тот же диплинк, что кнопка на aw.me/app/<awAppId>:
+// AppsFlyer открывает мини-апку в кошельке (или магазин, если его нет).
 // Внутри кошелька каталог — мини-апка (public/config.json): после handshake
 // та же кнопка зовёт sdk.openApp и кошелёк кладёт выбранную апку в свой стек.
 // Команды «добавить на домашний экран» в SDK нет — capabilities.canAdd остаётся false.
@@ -26,6 +27,10 @@ function notify(text) {
 }
 
 export const appLink = (app) => `https://aw.me/app/${app.awAppId}`
+
+// Та же ссылка, что основная кнопка на https://aw.me/app/<awAppId>.
+const APP_DEEP_LINK = 'https://antarcticwallet.onelink.me/Juvy/go?deep_link_value=mini-apps/add&deep_link_sub1='
+export const appDeepLink = (app) => `${APP_DEEP_LINK}${encodeURIComponent(app.awAppId)}`
 
 const BG = { light: '#f5f5f8', dark: '#0b0d14' }
 const OPEN_ERROR = {
@@ -66,7 +71,14 @@ function syncBack(router) {
   else hostSdk.backButton.show()
 }
 
+let consumeBack = null
+/** Если вернуло true, системная «Назад» уже обработана и страницу не закрываем. */
+export function setBackOverride(fn) {
+  consumeBack = fn
+}
+
 function goBack(router) {
+  if (consumeBack?.()) return
   if (window.history.state?.back) router.back()
   else router.push({ name: 'home' })
 }
@@ -118,14 +130,14 @@ export function openApp(app) {
   if (hostSdk?.isCommandAvailable(AWCommand.OpenApp)) {
     hostSdk.openApp({ appId: app.awAppId }).catch((error) => {
       if (error instanceof AWOpenAppError && error.errorCode === OpenAppErrorCodes.Unsupported) {
-        window.open(appLink(app), '_blank', 'noopener')
+        window.open(appDeepLink(app), '_blank', 'noopener')
         return
       }
       notify(t(error instanceof AWTimeoutError ? 'error.timeout' : OPEN_ERROR[error.errorCode] ?? 'error.generic'))
     })
     return
   }
-  window.open(appLink(app), '_blank', 'noopener')
+  window.open(appDeepLink(app), '_blank', 'noopener')
 }
 
 // Нативная штора «Поделиться» (navigator.share). Делимся ссылкой aw.me/app/<id> — она открывается

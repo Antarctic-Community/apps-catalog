@@ -20,6 +20,7 @@ const messages = {
     release: 'Релиз',
     category: 'Категория',
     screenshot: 'скриншот',
+    close: 'Закрыть',
     about: 'О приложении',
     info: 'Информация',
     app: 'Приложение',
