@@ -2,11 +2,11 @@
 //
 // В браузере «Открыть» ведёт на тот же диплинк, что кнопка на aw.me/app/<awAppId>:
 // AppsFlyer открывает мини-апку в кошельке (или магазин, если его нет).
-// Внутри кошелька каталог — мини-апка (public/config.json): после handshake
-// та же кнопка зовёт sdk.openApp и кошелёк кладёт выбранную апку в свой стек.
+// Внутри кошелька эта ссылка не используется. Каталог — мини-апка (public/config.json):
+// после handshake та же кнопка зовёт sdk.openApp, и кошелёк кладёт выбранную апку в свой стек.
 // Команды «добавить на домашний экран» в SDK нет — capabilities.canAdd остаётся false.
 import { reactive, ref } from 'vue'
-import { AWCommand, AWOpenAppError, AWSDK, AWTimeoutError, OpenAppErrorCodes } from '@antarctic-wallet/aw-sdk'
+import { AWSDK, AWTimeoutError, OpenAppErrorCodes } from '@antarctic-wallet/aw-sdk'
 import { setLocale, t } from './i18n'
 
 const query = new URLSearchParams(location.search + '&' + (location.hash.split('?')[1] ?? ''))
@@ -48,6 +48,7 @@ const OPEN_ERROR = {
 setLocale(query.get('awLanguageCode'))
 
 let hostSdk = null
+let hostReady = Promise.resolve()
 
 function parentOrigin() {
   return query.get('parentOrigin') ?? ''
@@ -89,7 +90,7 @@ export function initHost(router) {
   const origin = parentOrigin()
   if (!origin) return
 
-  void (async () => {
+  hostReady = (async () => {
     let config
     try {
       const response = await fetch(new URL('config.json', document.baseURI))
@@ -126,15 +127,22 @@ export function initHost(router) {
   })()
 }
 
+async function openInWallet(app) {
+  await hostReady
+  if (!hostSdk) {
+    notify(t('error.generic'))
+    return
+  }
+  try {
+    await hostSdk.openApp({ appId: app.awAppId })
+  } catch (error) {
+    notify(t(error instanceof AWTimeoutError ? 'error.timeout' : OPEN_ERROR[error.errorCode] ?? 'error.generic'))
+  }
+}
+
 export function openApp(app) {
-  if (hostSdk?.isCommandAvailable(AWCommand.OpenApp)) {
-    hostSdk.openApp({ appId: app.awAppId }).catch((error) => {
-      if (error instanceof AWOpenAppError && error.errorCode === OpenAppErrorCodes.Unsupported) {
-        window.open(appDeepLink(app), '_blank', 'noopener')
-        return
-      }
-      notify(t(error instanceof AWTimeoutError ? 'error.timeout' : OPEN_ERROR[error.errorCode] ?? 'error.generic'))
-    })
+  if (AWSDK.isInsideWallet()) {
+    void openInWallet(app)
     return
   }
   window.open(appDeepLink(app), '_blank', 'noopener')

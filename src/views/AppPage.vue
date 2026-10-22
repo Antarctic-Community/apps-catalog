@@ -1,7 +1,7 @@
 <script setup>
 import { computed, onMounted, onUnmounted, ref } from 'vue'
 import { appById, catalog } from '../catalog'
-import { capabilities, host, isAdded, addApp, openApp, appDeepLink, setBackOverride } from '../bridge'
+import { capabilities, host, isAdded, addApp, openApp, appLink, appDeepLink, setBackOverride } from '../bridge'
 import { categoryTitle, formatDate, t } from '../i18n'
 import BackLink from '../components/BackLink.vue'
 import ShareButton from '../components/ShareButton.vue'
@@ -101,7 +101,11 @@ onUnmounted(() => {
     <section class="card"><h2>{{ t('about') }}</h2><p v-for="p in paragraphs" :key="p">{{ p }}</p></section>
     <section class="card">
       <h2>{{ t('info') }}</h2>
-      <div class="info"><span>{{ t('app') }}</span><a :href="appDeepLink(app)" target="_blank" rel="noopener">{{ appDeepLink(app).replace(/^https:\/\//, '') }}</a></div>
+      <div class="info">
+        <span>{{ t('app') }}</span>
+        <a v-if="host === 'wallet'" :href="appLink(app)" @click.prevent="openApp(app)">{{ appLink(app).replace(/^https:\/\//, '') }}</a>
+        <a v-else :href="appDeepLink(app)" target="_blank" rel="noopener">{{ appDeepLink(app).replace(/^https:\/\//, '') }}</a>
+      </div>
       <div v-if="app.developer?.website" class="info"><span>{{ t('website') }}</span><a :href="app.developer.website" target="_blank" rel="noopener">{{ siteHost(app.developer.website) }}</a></div>
       <div v-if="support" class="info"><span>{{ t('support') }}</span><a :href="support" target="_blank" rel="noopener">{{ supportLabel }}</a></div>
     </section>
