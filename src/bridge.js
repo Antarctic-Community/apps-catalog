@@ -2,11 +2,13 @@
 //
 // В браузере «Открыть» ведёт на тот же диплинк, что кнопка на aw.me/app/<awAppId>:
 // AppsFlyer открывает мини-апку в кошельке (или магазин, если его нет).
-// Внутри кошелька эта ссылка не используется. Каталог — мини-апка (public/config.json):
-// после handshake та же кнопка зовёт sdk.openApp, и кошелёк кладёт выбранную апку в свой стек.
+// Внутри кошелька каталог — мини-апка (public/config.json). Если хост умеет open_app,
+// кнопка зовёт sdk.openApp и кошелёк кладёт выбранную апку в свой стек.
+// Если команды нет, открывается https://aw.me/app/<awAppId> — её кошелёк уже понимает.
+// Ошибку в этом случае не показываем.
 // Команды «добавить на домашний экран» в SDK нет — capabilities.canAdd остаётся false.
 import { reactive, ref } from 'vue'
-import { AWSDK, AWTimeoutError, OpenAppErrorCodes } from '@antarctic-wallet/aw-sdk'
+import { AWCommand, AWOpenAppError, AWSDK, AWTimeoutError, OpenAppErrorCodes } from '@antarctic-wallet/aw-sdk'
 import { setLocale, t } from './i18n'
 
 const query = new URLSearchParams(location.search + '&' + (location.hash.split('?')[1] ?? ''))
@@ -48,7 +50,6 @@ const OPEN_ERROR = {
 setLocale(query.get('awLanguageCode'))
 
 let hostSdk = null
-let hostReady = Promise.resolve()
 
 function parentOrigin() {
   return query.get('parentOrigin') ?? ''
@@ -90,7 +91,7 @@ export function initHost(router) {
   const origin = parentOrigin()
   if (!origin) return
 
-  hostReady = (async () => {
+  void (async () => {
     let config
     try {
       const response = await fetch(new URL('config.json', document.baseURI))
@@ -127,25 +128,23 @@ export function initHost(router) {
   })()
 }
 
-async function openInWallet(app) {
-  await hostReady
-  if (!hostSdk) {
-    notify(t('error.generic'))
-    return
-  }
-  try {
-    await hostSdk.openApp({ appId: app.awAppId })
-  } catch (error) {
-    notify(t(error instanceof AWTimeoutError ? 'error.timeout' : OPEN_ERROR[error.errorCode] ?? 'error.generic'))
-  }
+function openInBrowser(app) {
+  const url = AWSDK.isInsideWallet() ? appLink(app) : appDeepLink(app)
+  window.open(url, '_blank', 'noopener')
 }
 
 export function openApp(app) {
-  if (AWSDK.isInsideWallet()) {
-    void openInWallet(app)
+  if (hostSdk?.isCommandAvailable(AWCommand.OpenApp)) {
+    hostSdk.openApp({ appId: app.awAppId }).catch((error) => {
+      if (error instanceof AWOpenAppError && error.errorCode === OpenAppErrorCodes.Unsupported) {
+        openInBrowser(app)
+        return
+      }
+      notify(t(error instanceof AWTimeoutError ? 'error.timeout' : OPEN_ERROR[error.errorCode] ?? 'error.generic'))
+    })
     return
   }
-  window.open(appDeepLink(app), '_blank', 'noopener')
+  openInBrowser(app)
 }
 
 // Нативная штора «Поделиться» (navigator.share). Делимся ссылкой aw.me/app/<id> — она открывается

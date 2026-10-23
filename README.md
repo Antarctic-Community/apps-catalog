@@ -16,4 +16,4 @@
 2. В поле App URL укажите адрес этого сайта (GitHub Pages или свой домен).
 3. Опубликуйте. Кошелёк откроет каталог в iframe и передаст `?parentOrigin=`.
 
-Дальше кнопка «Открыть» внутри кошелька вызывает `sdk.openApp({ appId })` — `awAppId` из карточки. Кошелёк кладёт выбранную мини-апку в свой стек (не больше 5). Диплинк с `aw.me` в этом режиме не открывается. В обычной вкладке браузера открывается тот же диплинк, что кнопка на `https://aw.me/app/<awAppId>`: `https://antarcticwallet.onelink.me/Juvy/go?deep_link_value=mini-apps/add&deep_link_sub1=<awAppId>`. «Поделиться» по-прежнему отдаёт короткую `https://aw.me/app/<awAppId>`.
+Дальше кнопка «Открыть» внутри кошелька вызывает `sdk.openApp({ appId })`, если хост заявил `open_app`: кошелёк кладёт выбранную мини-апку в свой стек (не больше 5). Если команды нет, открывается `https://aw.me/app/<awAppId>` без сообщения об ошибке. В обычной вкладке браузера открывается тот же диплинк, что кнопка на `https://aw.me/app/<awAppId>`: `https://antarcticwallet.onelink.me/Juvy/go?deep_link_value=mini-apps/add&deep_link_sub1=<awAppId>`. «Поделиться» по-прежнему отдаёт короткую `https://aw.me/app/<awAppId>`.
