@@ -5,6 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="color-scheme" content="light dark" />
     <title>Каталог приложений · Antarctic Wallet</title>
+    <script>
+      // На части Android env(safe-area-inset-top) сначала больше нормы и схлопывается -
+      // прыгает вся страница над шапкой. Правило перекрывает env(). Кошелёк пишет
+      // настоящий отступ в inline-стиль и перекрывает это правило.
+      if (navigator.userAgent.includes('Android')) {
+        const style = document.createElement('style')
+        style.textContent = ':root{--aw-safe-area-inset-top:0px}'
+        document.head.append(style)
+      }
+    </script>
   </head>
   <body>
     <div id="app"></div>
