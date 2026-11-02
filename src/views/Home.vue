@@ -4,6 +4,7 @@ import { appsOf } from '../catalog'
 import { collectionTitle, t } from '../i18n'
 import Section from '../components/Section.vue'
 import ActionButton from '../components/ActionButton.vue'
+import VerifiedBadge from '../components/VerifiedBadge.vue'
 
 const featured = computed(() => appsOf('featured').filter((a) => a.screenshots.length))
 </script>
@@ -20,7 +21,10 @@ const featured = computed(() => appsOf('featured').filter((a) => a.screenshots.l
     <RouterLink v-for="a in featured" :key="a.id" class="banner" :to="{ name: 'app', params: { id: a.id } }">
       <img class="banner-bg" :src="a.screenshots[0]" alt="" />
       <span class="banner-bar">
-        <img class="icon sm" :src="a.icon" alt="" />
+        <span class="icon-box">
+          <img class="icon sm" :src="a.icon" alt="" />
+          <VerifiedBadge v-if="a.verified" />
+        </span>
         <span class="row-text"><span class="row-name">{{ a.name }}</span><span class="row-tag">{{ a.tagline }}</span></span>
         <ActionButton :app="a" />
       </span>

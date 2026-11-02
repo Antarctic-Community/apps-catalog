@@ -80,9 +80,12 @@ onUnmounted(() => {
     <header v-if="host !== 'wallet'" class="top"><BackLink to="/" /></header>
 
     <div class="hero">
-      <img class="icon xl" :src="app.icon" :alt="app.name" />
+      <span class="icon-box">
+        <img class="icon xl" :src="app.icon" :alt="app.name" />
+        <VerifiedBadge v-if="app.verified" />
+      </span>
       <div class="hero-text">
-        <h1>{{ app.name }}<VerifiedBadge v-if="app.verified" /></h1>
+        <h1>{{ app.name }}</h1>
         <span class="row-tag">{{ app.tagline }}</span>
         <div class="hero-actions">
           <button class="primary sm" @click="primary">
