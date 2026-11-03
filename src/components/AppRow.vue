@@ -13,7 +13,7 @@ defineProps({ app: Object, rank: Number });
     </span>
     <span class="row-text">
       <span class="row-name">{{ app.name }}</span>
-      <span class="row-tag">{{ app.tagline }}</span>
+      <span class="row-tag clamp">{{ app.tagline }}</span>
     </span>
     <ActionButton :app="app" />
   </RouterLink>

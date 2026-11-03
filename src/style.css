@@ -43,6 +43,7 @@ h2 { font-size: 18px; margin: 0; }
 .row-text { display: flex; flex-direction: column; gap: 3px; flex: 1; min-width: 0; }
 .row-name { font-weight: 500; }
 .row-tag { color: var(--muted); font-size: 14px; }
+.row-tag.clamp { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; overflow-wrap: anywhere; }
 .pill { background: var(--blue-soft); color: var(--blue); font-weight: 600; font-size: 14px; padding: 8px 14px; border-radius: 12px; }
 
 .searchbar { display: flex; align-items: center; gap: 16px; padding: 16px 0 8px; }
@@ -64,11 +65,12 @@ h2 { font-size: 18px; margin: 0; }
 .primary.sm { height: 40px; flex: none; padding: 0 24px; border-radius: 12px; }
 .square { position: relative; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 12px; background: var(--blue-soft); color: var(--blue); font-size: 18px; flex: none; }
 .bottom .square { width: 52px; height: 52px; }
-.facts { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; margin: 0; padding: 14px 0; border-bottom: 1px solid var(--line); text-align: center; }
+.facts { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; margin: 0; padding: 14px 0; text-align: center; }
 .facts > div + div { border-left: 1px solid var(--line); }
 .facts dt { color: var(--muted); font-size: 12px; margin-bottom: 4px; }
 .facts dd { margin: 0; font-weight: 600; font-size: 15px; padding: 0 6px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.shots { display: flex; gap: 8px; overflow-x: auto; margin: 16px -16px; padding: 0 16px; scroll-snap-type: x mandatory; scrollbar-width: none; }
+.gallery { margin: 16px 0 24px; padding-bottom: 24px; border-bottom: 1px solid var(--line); }
+.shots { display: flex; gap: 8px; overflow-x: auto; margin: 0 -16px; padding: 0 20px; scroll-padding-left: 20px; scroll-snap-type: x mandatory; scrollbar-width: none; }
 .shots button { flex: none; padding: 0; height: 340px; border-radius: 20px; overflow: hidden; scroll-snap-align: start; background: var(--field); line-height: 0; }
 .shots img { height: 340px; width: auto; display: block; }
 .lightbox { position: fixed; inset: 0; z-index: 20; display: grid; place-items: center; padding: 24px; background: rgba(0, 0, 0, .88); }

@@ -7,8 +7,6 @@ import {
   isAdded,
   addApp,
   openApp,
-  appLink,
-  appDeepLink,
   setBackOverride,
 } from "../bridge";
 import { categoryTitle, formatDate, t } from "../i18n";
@@ -111,15 +109,17 @@ onUnmounted(() => {
       </div>
     </dl>
 
-    <div v-if="app.screenshots.length" class="shots">
-      <button
-        v-for="s in app.screenshots"
-        :key="s"
-        type="button"
-        @click="openPreview(s)"
-      >
-        <img :src="s" :alt="shotAlt" loading="lazy" />
-      </button>
+    <div v-if="app.screenshots.length" class="gallery">
+      <div class="shots">
+        <button
+          v-for="s in app.screenshots"
+          :key="s"
+          type="button"
+          @click="openPreview(s)"
+        >
+          <img :src="s" :alt="shotAlt" loading="lazy" />
+        </button>
+      </div>
     </div>
 
     <div
@@ -155,18 +155,6 @@ onUnmounted(() => {
     </section>
     <section class="card">
       <h2>{{ t("info") }}</h2>
-      <div class="info">
-        <span>{{ t("app") }}</span>
-        <a
-          v-if="host === 'wallet'"
-          :href="appLink(app)"
-          @click.prevent="openApp(app)"
-          >{{ appLink(app).replace(/^https:\/\//, "") }}</a
-        >
-        <a v-else :href="appDeepLink(app)" target="_blank" rel="noopener">{{
-          appDeepLink(app).replace(/^https:\/\//, "")
-        }}</a>
-      </div>
       <div v-if="app.developer?.website" class="info">
         <span>{{ t("website") }}</span
         ><a :href="app.developer.website" target="_blank" rel="noopener">{{
