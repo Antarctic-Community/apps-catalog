@@ -1,0 +1,18 @@
+{
+  "id": "penguin-jump",
+  "awAppId": "54142337",
+  "name": "Penguin Jump",
+  "tagline": "Прыжки пингвином по льдинам",
+  "description": "Прыжки пингвином по льдинам. Жмите кнопку, перелетайте с льдины на льдину, собирайте монеты и рыбу и побейте свой рекорд.\n\nНа главном экране видны уровень, опыт и лучший результат. Оттуда же запускается забег.",
+  "category": "games",
+  "icon": "icon.png",
+  "developer": {
+    "name": "Kitron",
+    "website": "https://kitron.tech",
+    "support": "https://t.me/kitrontech"
+  },
+  "screenshots": [
+    "screenshots/1.jpg",
+    "screenshots/2.jpg"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "id": "kitron-energy",
+  "awAppId": "82921355",
+  "name": "Kitron Energy",
+  "tagline": "Аренда энергии для USDT",
+  "description": "Аренда энергии TRON для переводов USDT. Укажите адрес получателя, и приложение посчитает, сколько энергии нужно: перевод выходит дешевле, оплата списывается с баланса кошелька.\n\nНовый TRON-адрес можно активировать перед первым использованием. Если активация не пройдёт, средства вернутся. В истории остаются аренда, активации и сколько уже удалось сэкономить.",
+  "category": "finance",
+  "icon": "icon.jpg",
+  "developer": {
+    "name": "Kitron",
+    "website": "https://kitron.tech",
+    "support": "https://t.me/kitrontech"
+  },
+  "screenshots": [
+    "screenshots/1.jpg",
+    "screenshots/2.jpg",
+    "screenshots/3.jpg"
+  ]
+}

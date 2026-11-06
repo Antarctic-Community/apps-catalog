@@ -1,0 +1,18 @@
+{
+  "id": "kitron-aml",
+  "awAppId": "41562257",
+  "name": "Kitron AML",
+  "tagline": "Проверка адреса и транзакции на риски",
+  "description": "Проверка кошелька или транзакции на риски до перевода. Для кошелька выберите сеть и вставьте адрес, для транзакции ещё монету и хэш. Оплата списывается с баланса.\n\nГотовые проверки остаются в разделе «Мои проверки».",
+  "category": "finance",
+  "icon": "icon.jpg",
+  "developer": {
+    "name": "Kitron",
+    "website": "https://kitron.tech",
+    "support": "https://t.me/kitrontech"
+  },
+  "screenshots": [
+    "screenshots/1.jpg",
+    "screenshots/2.jpg"
+  ]
+}

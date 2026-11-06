@@ -1,0 +1,18 @@
+{
+  "id": "tamagotchi",
+  "awAppId": "10036780",
+  "name": "Тамагочи",
+  "tagline": "Тамагочи с пингвином",
+  "description": "Тамагочи с пингвином. Следите за сытостью, чистотой, энергией, радостью и здоровьем и тратьте запасы, чтобы показатели не падали.\n\nПингвин живёт на экране карманной игрушки: просыпается, показывает, как у него дела, и ждёт, когда им займутся.",
+  "category": "games",
+  "icon": "icon.png",
+  "developer": {
+    "name": "Kitron",
+    "website": "https://kitron.tech",
+    "support": "https://t.me/kitrontech"
+  },
+  "screenshots": [
+    "screenshots/1.jpg",
+    "screenshots/2.jpg"
+  ]
+}

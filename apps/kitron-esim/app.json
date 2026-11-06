@@ -1,0 +1,21 @@
+{
+  "id": "kitron-esim",
+  "awAppId": "16327887",
+  "name": "Kitron eSIM",
+  "tagline": "Travel-eSIM в два клика",
+  "description": "Travel-eSIM для поездок. Выберите страну или регион, тариф по гигабайтам и дням и оплатите через Antarctic Wallet.\n\nВ карточке направления видны скорость сети, раздача интернета и момент, когда начинается срок. eSIM можно установить до поездки: она действует 180 дней до установки. В «Мои eSIM» остаются остаток трафика, срок и докупка гигабайт.",
+  "category": "shopping",
+  "icon": "icon.jpg",
+  "developer": {
+    "name": "Kitron",
+    "website": "https://kitron.tech",
+    "support": "https://t.me/kitrontech"
+  },
+  "screenshots": [
+    "screenshots/1.jpg",
+    "screenshots/2.jpg",
+    "screenshots/3.jpg",
+    "screenshots/4.jpg",
+    "screenshots/5.jpg"
+  ]
+}
