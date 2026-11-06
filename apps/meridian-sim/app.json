@@ -1,0 +1,14 @@
+{
+  "id": "meridian-sim",
+  "awAppId": "53536048",
+  "name": "Meridian SIM",
+  "tagline": "eSIM для поездок, оплата из кошелька",
+  "description": "Мобильный интернет в поездках без поиска местной SIM-карты. Выберите страну или регион, объём трафика и срок и оплатите с баланса Antarctic Wallet.\n\neSIM можно установить заранее, дома по Wi-Fi: срок пойдёт только с первого подключения в стране пакета. Закончился трафик — докупите пакет на ту же eSIM прямо в приложении.\n\nЕсли оператор не выдал eSIM, деньги автоматически вернутся на баланс. Перед покупкой можно проверить, поддерживает ли телефон eSIM, а eSIM можно отправить в подарок ссылкой.",
+  "category": "shopping",
+  "developer": {
+    "name": "Meridian",
+    "website": "https://miniapp.meridianconn.com"
+  },
+  "icon": "icon.png",
+  "screenshots": ["screenshots/1.png", "screenshots/2.png", "screenshots/3.png"]
+}
