@@ -7,12 +7,12 @@
   "category": "games",
   "icon": "icon.png",
   "screenshots": [
-    "screenshots/1-home.png",
-    "screenshots/2-story.png",
-    "screenshots/3-ice.png",
-    "screenshots/4-shop.png",
-    "screenshots/5-igloo.png",
-    "screenshots/6-friends.png",
-    "screenshots/7-night.png"
+    "screenshots/1-home.webp",
+    "screenshots/2-story.webp",
+    "screenshots/3-ice.webp",
+    "screenshots/4-shop.webp",
+    "screenshots/5-igloo.webp",
+    "screenshots/6-friends.webp",
+    "screenshots/7-night.webp"
   ]
 }
