@@ -6,6 +6,11 @@
   "description": "Lofi-радио для учёбы, работы и сна. Выберите сцену, включите станцию и оставьте музыку фоном.\n\nВ плеере видны текущий трек, громкость и отметка эфира. Станции и сцены переключаются отдельно, поддержать радио можно прямо из плеера.",
   "category": "media",
   "icon": "icon.png",
+  "developer": {
+    "name": "Kitron",
+    "website": "https://kitron.tech",
+    "support": "https://t.me/kitrontech"
+  },
   "screenshots": [
     "screenshots/1.jpg"
   ]
