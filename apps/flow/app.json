@@ -1,0 +1,17 @@
+{
+  "id": "flow",
+  "awAppId": "85976941",
+  "name": "Flow",
+  "tagline": "VPN, DNS и прокси",
+  "description": "Flow — сервис VPN, DNS и прокси.\n\nВ личном кабинете можно оформить и продлить подписку, проверить срок действия услуг и открыть инструкции по подключению для своего устройства. Поддержка доступна из приложения и Telegram-бота.\n\nAntarctic Wallet используется для пополнения баланса Flow и оплаты услуг. Платёж подтверждается в кошельке.",
+  "category": "other",
+  "icon": "icon.png",
+  "developer": {
+    "name": "Flow",
+    "website": "https://floweb.club",
+    "support": "https://t.me/floweb_bot?start=support"
+  },
+  "screenshots": [
+    "screenshots/hub.png"
+  ]
+}
