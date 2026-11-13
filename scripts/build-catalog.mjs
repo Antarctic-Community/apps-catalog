@@ -141,7 +141,12 @@ try {
 withMau.sort((a, b) => a.name.localeCompare(b.name, 'ru'))
 const enriched = withMau
 const newest = [...enriched].sort((a, b) => b.addedAt.localeCompare(a.addedAt)).map((a) => a.id)
-const top = [...enriched].sort((a, b) => b.mau - a.mau || a.name.localeCompare(b.name, 'ru')).slice(0, 5)
+// Демо-приложение не конкурирует с живыми по MAU.
+const TOP_EXCLUDED = new Set(['antarctic-example'])
+const top = [...enriched]
+  .filter((a) => !TOP_EXCLUDED.has(a.id))
+  .sort((a, b) => b.mau - a.mau || a.name.localeCompare(b.name, 'ru'))
+  .slice(0, 5)
 
 await rm(outDir, { recursive: true, force: true })
 await mkdir(join(outDir, 'apps'), { recursive: true })
