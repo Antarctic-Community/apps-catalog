@@ -1,0 +1,19 @@
+{
+  "id": "odinvpn",
+  "awAppId": "81666800",
+  "name": "OdinVPN",
+  "tagline": "VPN и управление подпиской в кошельке",
+  "description": "OdinVPN — VPN-сервис от OdinGroup. Выбирайте тариф, оплачивайте подписку через Antarctic Wallet и получайте ссылку для подключения.\n\nВ мини-приложении доступны управление подпиской, список устройств, история транзакций, инструкции по подключению, документы и поддержка. Пробный доступ выдаётся на 3 дня, один раз на аккаунт, при наличии.\n\nСвязать Telegram можно по желанию: после подтверждения подписки доступны в Antarctic Wallet и Telegram. Для подключения к VPN требуется совместимое клиентское приложение.",
+  "category": "other",
+  "developer": {
+    "name": "OdinGroup",
+    "website": "https://odingroup.pro",
+    "support": "https://t.me/odingroupsupport"
+  },
+  "icon": "icon.jpg",
+  "screenshots": [
+    "screenshots/1-home.png",
+    "screenshots/2-plans.png",
+    "screenshots/3-profile.png"
+  ]
+}
