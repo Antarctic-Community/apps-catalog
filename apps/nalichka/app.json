@@ -1,0 +1,15 @@
+{
+  "id": "nalichka",
+  "awAppId": "13614594",
+  "name": "Наличка",
+  "tagline": "Наличные ↔ баланс AW через обменки",
+  "description": "Наличка — агрегатор обменок для Antarctic Wallet. Выбирайте обменку по курсу и получайте наличные рубли за баланс AW или пополняйте кошелёк наличными.\n\nКурс, комиссия и стоимость доставки видны до создания заявки. Забрать можно в офисе обменки или заказать курьера по адресу.\n\nОплата подтверждается в кошельке, статус заявки виден в приложении. Обменки подключаются через заявку и проходят модерацию.",
+  "category": "finance",
+  "developer": {
+    "name": "Наличка",
+    "website": "https://nalichka.31-59-116-177.sslip.io",
+    "support": "https://nalichka.31-59-116-177.sslip.io"
+  },
+  "icon": "icon.png",
+  "screenshots": ["screenshots/1.png", "screenshots/2.png", "screenshots/3.png", "screenshots/4.png", "screenshots/5.png"]
+}
